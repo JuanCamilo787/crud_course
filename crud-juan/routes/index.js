@@ -4,15 +4,17 @@ const model = require('../models/task')();
 
 
 router.get('/', (req, res)=>{
-    model.find({}, (err, data)=>{
-        if(err) throw err;
 
-        res.render('./../views/index.ejs');
-
-    });
 })
 
+router.post('/post', (req, res)=>{
+    let data = new model(req.body, (err, data)=>{
+        if (err) throw err;
 
+        res.req.body;
+    });
+
+})
 
 
 module.exports = router;
