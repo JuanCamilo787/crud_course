@@ -1,3 +1,4 @@
+const db = require('./libs/db');
 const path = require('path');
 const express = require('express');
 const logger = require('morgan');
@@ -5,6 +6,7 @@ const bodyParser = require('body-parser');
 require('colors');
 
 const app = express();
+db.connection();
 
 const indexRoutes = require('./routes/index.js');
 
@@ -18,6 +20,8 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 
 //routes
 
