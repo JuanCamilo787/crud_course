@@ -3,17 +3,20 @@ const router = express.Router();
 const model = require('../models/task')();
 
 
-// router.get('/', (req, res)=>{
-// res.send(model.find(req.body));
-// })
+router.get('/', (req, res) => {
+    model.find(req.body).then((data) => {
+        res.send(data);
+    }).catch((err) => {
+        if (err) throw err;
+    })
+})
 
-router.post('/', (req, res)=>{
+router.post('/', (req, res) => {
     let data = req.body;
-    console.log(data)
-    model.create(data, (err, task)=>{
+    model.create(data, (err, task) => {
         if (err) throw res.send(err);
         return res.send(task);
-    }); 
+    });
 
 })
 
